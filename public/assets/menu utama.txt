@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MENU UTAMA</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Background Image Slider */
+    .background-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slide 20s infinite;
+      z-index: -1; /* Make sure the slider is in the background */
+    }
+
+    /* Slide Animation */
+    @keyframes slide {
+      0% {
+        background-image: url('gambar3.jpeg');
+      }
+      33% {
+        background-image: url('gambar2.jpeg');
+      }
+      66% {
+        background-image: url('gambar1.png');
+      }
+      100% {
+        background-image: url('gambar4.jpeg');
+      }
+    }
+
+    /* Header Styles */
+    header {
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    /* Section Layout: Flexbox */
+    section {
+      display: flex;
+      gap: 50px;
+      padding: 50px;
+    }
+
+    /* Navigation (left column) */
+    nav {
+      background-color: #14315F;
+      padding: 20px;
+      width: 200px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1em;
+      display: block;
+      padding: 15px;
+      background-color: white;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: white;
+      color: white;
+      border-color: #444;
+    }
+
+    /* Main Content */
+    article {
+      flex-grow: 1;
+      background-color: rgb(50, 82, 133); /* Slight transparent white background */
+      padding: 20px; // kotak tengah
+    }
+
+    article h1 {
+      font-size: 2.2em;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Responsive Design for Small Screens */
+    @media (max-width: 1000px) {
+      section {
+        flex-direction: column;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+      article {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Image Slider -->
+  <div class="background-slider"></div>
+
+  <header>
+    <h1>SISTEM REKOD PEMINJAMAN DAN PEMULANGAN PERALATAN MULTIMEDIA DI MAKMAL FPTV</h1>
+  </header>
+
+  <section>
+    <!-- Navigation Menu -->
+    <nav>
+      <ul>
+        <li><a href="#">MENU UTAMA</a></li>
+        <li><a href="file:///C:/Users/hi/OneDrive/Documents/SEM%207/PRODUCTION%20PROJECT%20MULTIMEDIA/notepad/syarat.html">SYARAT PINJAMAN</a>
+        <li><a href="#">MAKMAL</a></li>
+        <li><a href="#">HUBUNGI</a></li>
+        <li><a href="#">SOALAN LAZIM</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <article>
+      <h1>SELAMAT DATANG</h1>
+      <p>Welcome to the Multimedia Equipment Loan System at FPTV Lab.</p>
+    </article>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 City Explorer</p>
+  </footer>
+
+</body>
+</html>
