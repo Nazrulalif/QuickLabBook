@@ -30,12 +30,12 @@
             z-index: -1; /* Make sure the slider is in the background */
         }
            /* Slide Animation */
-        @keyframes slide {
+        /* @keyframes slide {
             0% { background-image:  url({{ asset('assets/gambar3.jpeg')}}) }
             33% { background-image: url({{ asset('assets/gambar2.jpeg')}}) }
             66% { background-image: url({{ asset('assets/gambar1.png')}}) }
             100% { background-image: url({{ asset('assets/gambar4.jpeg')}}) }
-        }
+        } */
     </style>
 </head>
 

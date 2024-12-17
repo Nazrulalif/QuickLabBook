@@ -20,27 +20,27 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 rounded-3" style="width: 280px; background-color: #14315F">
         <ul class="nav nav-pills flex-column mb-auto p-2 text-center d-grid gap-3 fs-5">
             <li class="nav-item">
-                <a href="/" class="nav-link fw-bold border rounded-3 {{Request::is('/') ? 'active' : 'bg-white'}}" aria-current="page">
+                <a wire:navigate href="/" class="nav-link fw-bold border rounded-3 {{Request::is('/') ? 'active' : 'bg-white'}}" aria-current="page">
                     Menu Utama
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/syarat-peminjam" class="nav-link fw-bold border rounded-3 {{Request::is('syarat-peminjam') ? 'active' : 'bg-white'}}">
+                <a wire:navigate href="/syarat-peminjam" class="nav-link fw-bold border rounded-3 {{Request::is('syarat-peminjam') ? 'active' : 'bg-white'}}">
                     Syarat Pinjaman
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link fw-bold border rounded-3 bg-white">
-                    Makmal
+                <a wire:navigate href="/tempahan" class="nav-link fw-bold border rounded-3 {{Request::is('tempahan') ? 'active' : 'bg-white'}}">
+                    Tempahan
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link fw-bold border rounded-3 bg-white">
+                <a wire:navigate href="/hubungi" class="nav-link fw-bold border rounded-3 {{Request::is('hubungi') ? 'active' : 'bg-white'}}">
                     Hubungi
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link fw-bold border rounded-3 bg-white">
+                <a wire:navigate href="/soalan-lazim" class="nav-link fw-bold border rounded-3 {{Request::is('soalan-lazim') ? 'active' : 'bg-white'}}">
                     Soalan Lazim
                 </a>
             </li>
