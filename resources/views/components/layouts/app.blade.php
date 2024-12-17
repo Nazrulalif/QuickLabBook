@@ -14,10 +14,13 @@
             /* font-family: Arial, Helvetica, sans-serif; */
             line-height: 1.6;
             overflow-x: hidden;
-            background-image:  url({{ asset('assets/fptv.jpg')}});
-            background-repeat: no-repeat; /* Prevents image tiling */
+            background-image: url({{ asset('assets/fptv.jpg')}}
+
+        );
+        background-repeat: no-repeat;
+        /* Prevents image tiling */
         }
-       
+
         .background-slider {
             position: fixed;
             top: 0;
@@ -27,15 +30,50 @@
             background-size: cover;
             background-position: center;
             animation: slide 20s infinite;
-            z-index: -1; /* Make sure the slider is in the background */
+            z-index: -1;
+            /* Make sure the slider is in the background */
         }
-           /* Slide Animation */
+
+        /* Slide Animation */
         /* @keyframes slide {
             0% { background-image:  url({{ asset('assets/gambar3.jpeg')}}) }
             33% { background-image: url({{ asset('assets/gambar2.jpeg')}}) }
             66% { background-image: url({{ asset('assets/gambar1.png')}}) }
             100% { background-image: url({{ asset('assets/gambar4.jpeg')}}) }
         } */
+
+        /* Hide default radio button */
+        .lab-radio-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Default lab selection item style */
+        .lab-selection-item {
+            color: #14315F;
+            background-color: white;
+            border: 2px solid #14315F;
+            transition: all 0.3s ease;
+        }
+
+        /* Lab selection container positioning */
+        .lab-selection-container {
+            position: relative;
+            display: block;
+        }
+
+        /* Active state when radio is checked */
+        .lab-radio-input:checked+.lab-selection-item {
+            background-color: #14315F;
+            color: white;
+        }
+
+        /* Optional: Hover effect */
+        .lab-selection-item:hover {
+            background-color: rgba(20, 49, 95, 0.1);
+        }
+
     </style>
 </head>
 
@@ -47,7 +85,9 @@
     <!-- Main Wrapper -->
     <div class="d-flex flex-grow-1">
         <!-- Sidebar -->
-        @livewire('partials.sidebar')
+        @if (!Request::is('borang-pinjaman'))
+            @livewire('partials.sidebar')
+        @endif
         <!-- Main Content -->
         <main class="flex-fill pt-5 pe-4 pb-3">
             {{ $slot }}

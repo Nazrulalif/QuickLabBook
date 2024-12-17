@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('no_matric');
             $table->string('email');
             $table->string('phone')->nullable();
-            $table->enum('level_study', ['undergraduate', 'postgraduate', 'doctor of philosophy']);
+            $table->enum('level_study', ['Sarjana Muda', 'Sarjana', 'Doktor Falsafah']);
             $table->integer('year_study')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected', 'return'])->default('pending');
             $table->date('start_at');

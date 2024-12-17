@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Home\Borang;
 use App\Livewire\Home\Hubungi;
 use App\Livewire\Home\Index;
 use App\Livewire\Home\SoalanLazim;
@@ -23,3 +24,4 @@ Route::get('/syarat-peminjam', Syarat::class);
 Route::get('/tempahan', Tempahan::class);
 Route::get('/hubungi', Hubungi::class);
 Route::get('/soalan-lazim', SoalanLazim::class);
+Route::get('/borang-pinjaman', Borang::class);

@@ -53,9 +53,9 @@ class BookingResource extends Resource
                         ->label('Level of Study')
                         ->required()
                         ->options([
-                            'undergraduate' => 'Undergraduate',
-                            'postgraduate' => 'Postgraduate',
-                            'doctor of philosophy' => 'Doctor of Philosophy',
+                            'Sarjana Muda' => 'Sarjana Muda',
+                            'Sarjana' => 'Sarjana',
+                            'Doktor Falsafah' => 'Doktor Falsafah',
                         ]),
                         Forms\Components\TextInput::make('year_study')
                             ->label('Year of Study')
