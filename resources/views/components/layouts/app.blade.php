@@ -17,7 +17,7 @@
             background-image: url({{ asset('assets/fptv.jpg')}}
 
         );
-        background-repeat: no-repeat;
+        background-repeat: round;
         /* Prevents image tiling */
         }
 

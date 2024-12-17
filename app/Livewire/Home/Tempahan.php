@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Home;
 
+use App\Models\Lab;
+use App\Models\Stock;
 use Livewire\Component;
 
 class Tempahan extends Component
@@ -13,17 +15,17 @@ class Tempahan extends Component
     public $showDate = true;    // Show date selection initially
     public $showItem = false;   // Show items after lab selection
 
-    // To simulate item quantities
-    public $items = [
-        ['name' => 'Canon', 'stock' => 5, 'selectedQty' => 0],
-        ['name' => 'Nikon', 'stock' => 3, 'selectedQty' => 0],
-        ['name' => 'Sony', 'stock' => 4, 'selectedQty' => 0],
-        ['name' => 'Fujifilm', 'stock' => 2, 'selectedQty' => 0],
-    ];
+    public $quantities = [];
 
     public function mount()
     {
         $this->dispatch('updatePageTitle', 'TEMPAHAN PINJAMAN BAGI PERALATAN MULTIMEDIA');
+
+
+        // Initialize quantities for all stock items
+        foreach (Stock::all() as $item) {
+            $this->quantities[$item->id] = 0; // Default quantity set to 1
+        }
     }
     public function goBack($step)
     {
@@ -43,11 +45,6 @@ class Tempahan extends Component
     }
     public function sendDate()
     {
-        $this->validate([
-            'start_date' => 'required|date|after_or_equal:today',
-            'end_date' => 'required|date|after_or_equal:start_date',
-        ]);
-
         $this->showDate = false;
         $this->showLabs = true;
     }
@@ -63,22 +60,71 @@ class Tempahan extends Component
         $this->showItem = true;
     }
 
-    public function incrementQty($index)
+    public function incrementQty($itemId)
     {
-        if ($this->items[$index]['selectedQty'] < $this->items[$index]['stock']) {
-            $this->items[$index]['selectedQty']++;
+        // Retrieve the item from the database
+        $item = Stock::find($itemId);
+
+        if (!$item) {
+            return;
+        }
+
+        // Check if the quantity is less than the stock quantity
+        if (isset($this->quantities[$itemId]) && $this->quantities[$itemId] < $item->quantity) {
+            $this->quantities[$itemId]++;
         }
     }
 
-    public function decrementQty($index)
+    public function decrementQty($itemId)
     {
-        if ($this->items[$index]['selectedQty'] > 0) {
-            $this->items[$index]['selectedQty']--;
+        if (isset($this->quantities[$itemId]) && $this->quantities[$itemId] > 0) {
+            $this->quantities[$itemId]--;
         }
+    }
+
+    public function hantar()
+    {
+        // Validate before proceeding
+        if (!$this->start_date || !$this->end_date || !$this->selectedLab) {
+            session()->flash('message', 'Sila lengkapkan semua pilihan sebelum hantar.');
+            return;
+        }
+
+        // Prepare the data to send to the checkout page
+        $selectedItems = collect($this->quantities)
+            ->filter(fn($quantity) => $quantity > 0)
+            ->map(function ($quantity, $itemId) {
+                $item = Stock::find($itemId);
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'quantity' => $quantity,
+                    'picture' => $item->picture,
+                ];
+            })->values()->toArray();
+
+        session([
+            'lab_id' => $this->selectedLab,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'items' => json_encode($selectedItems),
+        ]);
+
+        return redirect()->route('checkout');
     }
 
     public function render()
     {
-        return view('livewire.home.tempahan');
+        $lab = Lab::all();
+
+        $stock = [];
+        if ($this->selectedLab) {
+            $stock = Stock::where('lab_id', $this->selectedLab)->get();
+        }
+
+        return view('livewire.home.tempahan', compact([
+            'lab',
+            'stock',
+        ]));
     }
 }

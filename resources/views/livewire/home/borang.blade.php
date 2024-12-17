@@ -21,7 +21,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="" class="fw-bold ">No Matrik</label>
-                                            <input type="text" wire:model="matric"  class="form-control">
+                                            <input type="text" wire:model="matric" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -35,7 +35,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="" class="fw-bold ">Tahap Pengajian</label>
-                                            <select  wire:model="tahap_pengajian" class="form-control">
+                                            <select wire:model="tahap_pengajian" class="form-control">
+                                                <option value="">Sila buat pilihan</option>
                                                 <option value="Sarjana Muda">Sarjana Muda</option>
                                                 <option value="Sarjana">Sarjana</option>
                                                 <option value="Doktor Falsafah">Doktor Falsafah</option>
@@ -52,11 +53,12 @@
                                 <div class="row mt-2">
                                     <div class="form-group">
                                         <label for="" class="fw-bold ">Tujuan Pinjaman</label>
-                                        <textarea  wire:model="tujuan" class="form-control" cols="30" rows="10"></textarea>
+                                        <textarea wire:model="tujuan" class="form-control" cols="30"
+                                            rows="10"></textarea>
                                     </div>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="/tempahan" class="btn btn-secondary me-3 px-5 ">
+                                    <a wire:click='back' class="btn btn-secondary me-3 px-5 ">
                                         Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary px-5 "
@@ -76,11 +78,42 @@
                     <h5 class="bg-black text-white bg-opacity-75 p-3 text-center mb-4">
                         MAKLUMAT TEMPAHAN
                     </h5>
-        
-                    test
+                    <div class="card p-2 border border-3" style="background-color: rgba(255, 255, 255, 0.9); ">
+                        <div class="card-body" style="color:#14315F">
+                            <div class="row">
+                                <div class="fs-5">
+                                    <strong>Tarikh Pinjaman: </strong>
+                                    <small>{{ $start_date->format('d/m/Y') }} - {{ $end_date->format('d/m/Y') }}</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="fs-5">
+                                    <strong>Makmal:</strong>
+                                    <small>{{ $lab->name }}</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="fs-4 fw-bolder text-decoration-underline py-3">Barangan Tempahan</div>
+                                <ul class="list-group list-group-flush">
+                                    @foreach ($items as $item)
+                                    <li class="list-group-item d-flex align-items-center gap-3">
+                                        <img src="{{ asset('storage/' . $item['picture']) }}"
+                                            alt="{{ $item['name'] }} Image" class="rounded-circle"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div class="d-flex flex-column">
+                                            <div class="fs-5">{{ $item['name'] }}</div>
+                                            <small>Quantity: {{ $item['quantity'] }}</small>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  
+
 </div>

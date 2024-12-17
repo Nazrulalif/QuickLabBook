@@ -24,4 +24,4 @@ Route::get('/syarat-peminjam', Syarat::class);
 Route::get('/tempahan', Tempahan::class);
 Route::get('/hubungi', Hubungi::class);
 Route::get('/soalan-lazim', SoalanLazim::class);
-Route::get('/borang-pinjaman', Borang::class);
+Route::get('/borang-pinjaman', Borang::class)->name('checkout')->middleware(['web']);;
