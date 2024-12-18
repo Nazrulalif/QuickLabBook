@@ -63,7 +63,8 @@
                                     </a>
                                     <button type="submit" class="btn btn-primary px-5 "
                                         style="background-color: #14315F; border-color: #14315F;">
-                                        Hantar
+                                        <span wire:loading.remove>Hantar</span>
+                                        <span wire:loading>Loading...</span>
                                     </button>
                                 </div>
                             </form>

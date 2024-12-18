@@ -20,6 +20,7 @@ class Booking extends Model
         'start_at',
         'end_at',
         'purpose',
+        'comment'
     ];
 
     public function bookingItem(){

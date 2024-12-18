@@ -90,7 +90,7 @@
                             <button class="btn text-white" style="background-color:#14315F"
                                 wire:click="incrementQty({{ $item->id }})">+</button>
                         </div>
-                        <small class="text-muted">Stock left: {{  $item->quantity }}</small>
+                        <small class="text-muted">Stock left: {{  $item->available_quantity }}</small>
                     </div>
                 </div>
                 @endforeach
