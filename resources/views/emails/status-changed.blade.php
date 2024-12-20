@@ -21,9 +21,11 @@ Status tempahan anda telah dikemas kini kepada: **{{ ucfirst($status) }}**
 
 **Maklumat Tambahan:**
 
-{!! $comment !!}
+{!! str($comment )->markdown()->sanitizeHtml() !!}
 
+<hr>
 Jika anda mempunyai sebarang pertanyaan, sila hubungi kami.
+<hr>
 
 Terima Kasih,<br>
 {{ config('app.name') }}

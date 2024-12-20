@@ -78,7 +78,7 @@ class BookingResource extends Resource
                             Forms\Components\DatePicker::make('start_at')
                                 ->label('Start Date')
                                 ->required()
-                                ->rules(['after_or_equal:today'])
+                                // ->rules(['after_or_equal:today'])
                                 ->reactive()
                                 ->disabled(),
 
@@ -135,17 +135,20 @@ class BookingResource extends Resource
                                 'pending' => 'Pending',
                                 'approved' => 'Approve',
                                 'rejected' => 'Reject',
+                                'return' => 'return',
                             ])
                             ->colors([
                                 'pending' => 'primary',
                                 'approved' => 'success',
                                 'rejected' => 'danger',
+                                'return' => 'info',
 
                             ])
                             ->icons([
                                 'pending' => 'heroicon-m-sparkles',
                                 'approved' => 'heroicon-m-check-badge',
                                 'rejected' => 'heroicon-m-exclamation-circle',
+                                'return' => 'heroicon-m-receipt-refund',
 
                             ])
                             ->afterStateUpdated(function ($state, $record) {
@@ -192,7 +195,7 @@ class BookingResource extends Resource
                         'primary' => 'pending',
                         'success' => 'approved',
                         'danger' => 'rejected',
-                        'warning' => 'return',
+                        'info' => 'return',
                     ]),
             
                

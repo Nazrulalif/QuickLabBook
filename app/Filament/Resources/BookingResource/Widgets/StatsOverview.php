@@ -15,7 +15,7 @@ class StatsOverview extends BaseWidget
             Stat::make('Total Booking', Booking::all()->count()),
             Stat::make('Current Pending', Booking::query()->where('status', 'pending')->count()),
             Stat::make('Total Approve', Booking::query()->where('status', 'approved')->count()),
-            Stat::make('Total Reject', Booking::query()->where('status', 'reject')->count()),
+            Stat::make('Total Reject', Booking::query()->where('status', 'rejected')->count()),
         ];
     }
 
