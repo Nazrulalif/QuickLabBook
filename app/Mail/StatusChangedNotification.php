@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,17 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class StatusChangedNotification extends Mailable
 {
     use Queueable, SerializesModels;
-    public $booking;
-    public $newStatus;
-    public $items;
+    public Booking $booking;
+
+    
     /**
      * Create a new message instance.
      */
-    public function __construct($booking, $newStatus)
+    public function __construct(Booking $booking)
     {
         $this->booking = $booking;
-        $this->newStatus = $newStatus;
-        $this->items = $booking->bookingItem;
     }
 
     public function build()
@@ -31,11 +30,11 @@ class StatusChangedNotification extends Mailable
             ->markdown('emails.status-changed')
             ->with([
                 'bookingName' => $this->booking->name,
-                'status' => $this->newStatus,
+                'status' => $this->booking->status,
                 'startDate' => $this->booking->start_at,
                 'endDate' => $this->booking->end_at,
-                'items' => $this->items, 
-                'comment' => $this->booking->comment, 
+                'items' => $this->booking->bookingItem, // Assuming a relationship exists
+                'comment' => $this->booking->comment,
             ]);
     }
 }

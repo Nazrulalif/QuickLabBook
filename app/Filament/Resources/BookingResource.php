@@ -151,11 +151,11 @@ class BookingResource extends Resource
                                 'return' => 'heroicon-m-receipt-refund',
 
                             ])
-                            ->afterStateUpdated(function ($state, $record) {
-                                if ($state !== 'pending') {
-                                    Mail::to($record->email)->send(new StatusChangedNotification($record, $state));
-                                }
-                            })
+                            // ->afterStateUpdated(function ($state, $record) {
+                            //     if ($state !== 'pending') {
+                            //         Mail::to($record->email)->send(new StatusChangedNotification($record, $state));
+                            //     }
+                            // })
                             ->columnSpanFull(),
 
                             MarkdownEditor::make('comment')
